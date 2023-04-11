@@ -59,3 +59,36 @@ def zipit(arr1, arr2):
 
 print(zipit([2,10,34,1],[3,8,1,39]))
 
+# ********************************* GET HELP WITH THIS: KEEPS RETURNING FALSE???? *****************************************
+### Credit Card Validation (Bonus) ###
+# The Luhn formula is sometimes used to validate credit card numbers. Create the function isCreditCardValid(digitArr) that accepts an array of digits on the card (13-19 depending on the card), and returns a boolean whether the card digits satisfy the Luhn formula, as follows:
+
+# 1. Set aside the last digit; do not include it in these calculations (until step 5);
+# 2. Starting from the back, multiply the digits in odd positions (last, third-to-last, etc.) by 2;
+# 3. If any results are larger than 9, subtract 9 from them;
+# 4. Add all numbers (not just our odds) together;
+# 5. Now add the last digit back in – the sum should be a multiple of 10.
+
+# For example, when given digit array [5,2,2,8,2], after step 1) it becomes [5,2,2,8], then after step 2) it is [5,4,2,16]. Post-3) we have [5,4,2,7], then following 4) it becomes 18. After step 5) our value is 20, so ultimately we return true. If the final digit were any non-multiple-of-10, we would instead return false.
+
+def isCreditCardValid(cc_num):
+    #check if length of cc_num is valid range for credit card numbers (13-19 digits)
+    if len(cc_num) not in range(13, 20):
+        return False
+    # Step 1 set aside the last digit
+    check_digit = cc_num.pop()
+    # Step 2 multiplies digits in odd positions by 2
+    for i in range(len(cc_num)-1, -1, -2):
+        cc_num[i] *= 2
+        # Step 3 if any of these doubled digits are greater than 9, subtract doubled digits by 9
+        if cc_num[i] > 9:
+            cc_num[i] -= 9
+    # Step 4 add ALL the numbers together
+    total = sum(cc_num)
+    # Step 5 add the last digit you put aside and check if total is divisble by 10
+    total += check_digit
+    return total % 10 == 0
+
+print(isCreditCardValid([4322009879903345]))
+
+
