@@ -33,7 +33,13 @@ print(get_digits("0s1a3y5w7h9a2t4?6!8?0"))
 # Given " there's no free lunch - gotta pay yer way. ", return "TNFL-GPYW". Given "Live from New York, it's Saturday Night!", return "LFNYISN".
 
 def acronyms(string):
-    pass
+    words = string.split()
+    result = ""
+    for word in words:
+        result += word[0].upper()
+    return result
+
+print(acronyms(" there's no free lunch - gotta pay yer way. "))
 
 
 
